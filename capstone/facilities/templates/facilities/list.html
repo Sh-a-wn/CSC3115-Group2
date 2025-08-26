@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Facilities</h2>
+<a href="{% url 'facility_add' %}" class="btn btn-primary mb-3">Add Facility</a>
+<table class="table table-bordered">
+  <tr>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Actions</th>
+  </tr>
+  {% for facility in object_list %}
+  <tr>
+    <td><a href="{% url 'facility_detail' facility.pk %}">{{ facility.name }}</a></td>
+    <td>{{ facility.location }}</td>
+    <td>
+      <a href="{% url 'facility_edit' facility.pk %}" class="btn btn-sm btn-warning">Edit</a>
+      <a href="{% url 'facility_delete' facility.pk %}" class="btn btn-sm btn-danger">Delete</a>
+    </td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="3">No facilities found.</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}
