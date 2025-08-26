@@ -58,7 +58,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'capstone.urls'
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 TEMPLATES = [
     {
