@@ -37,6 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'equipment',
+    'facilities',
+    'programs',
+    'projects',
+    'services',
+    'participants',
+    
 ]
 
 MIDDLEWARE = [
@@ -51,10 +58,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'capstone.urls'
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
