@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Outcomes for: {{ project.title }}</h1>
+<p>
+  <a class="btn btn-primary" href="{% url 'outcome_add_for_project' project.pk %}">Add Outcome</a>
+  <a class="btn btn-secondary" href="{% url 'project_detail' project.pk %}">Back to Project</a>
+</p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Type</th>
+      <th>Certification</th>
+      <th>Status</th>
+      <th>Artifact</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for outcome in object_list %}
+    <tr>
+      <td><a href="{% url 'outcome_detail' outcome.pk %}">{{ outcome.title }}</a></td>
+      <td>{{ outcome.get_outcome_type_display }}</td>
+      <td>{{ outcome.quality_certification|default:"-" }}</td>
+      <td>{{ outcome.get_commercialization_status_display|default:"-" }}</td>
+      <td>
+        {% if outcome.artifact_link %}
+          <a href="{{ outcome.artifact_link }}" target="_blank" rel="noopener">Open</a>
+        {% else %}-{% endif %}
+      </td>
+    </tr>
+  {% empty %}
+    <tr><td colspan="5">No outcomes yet.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
