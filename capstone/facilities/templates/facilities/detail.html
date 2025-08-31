@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ object.name }}</h2>
+<p><strong>Location:</strong> {{ object.location }}</p>
+<p><strong>Description:</strong> {{ object.description }}</p>
+<p><strong>Partner Org:</strong> {{ object.partner_org }}</p>
+<p><strong>Type:</strong> {{ object.facility_type }}</p>
+<p><strong>Capabilities:</strong> {{ object.capabilities }}</p>
+<a href="{% url 'facility_list' %}" class="btn btn-secondary">Back</a>
+{% endblock %}

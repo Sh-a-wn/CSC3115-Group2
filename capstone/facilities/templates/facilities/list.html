@@ -1,24 +1,45 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>Facilities</h2>
-<a href="{% url 'facility_add' %}" class="btn btn-primary mb-3">Add Facility</a>
+
+<!-- Search and Filter -->
+<form method="get" class="form-inline mb-3">
+  <input type="text" name="search" placeholder="Search facilities..." value="{{ request.GET.search }}" class="form-control mr-2">
+
+  <select name="type" class="form-control mr-2">
+    <option value="All">All Types</option>
+    <option value="Lab" {% if request.GET.type == "Lab" %}selected{% endif %}>Lab</option>
+    <option value="Workshop" {% if request.GET.type == "Workshop" %}selected{% endif %}>Workshop</option>
+    <option value="Innovation Hub" {% if request.GET.type == "Innovation Hub" %}selected{% endif %}>Innovation Hub</option>
+  </select>
+
+  <button type="submit" class="btn btn-primary">Filter</button>
+  <a href="{% url 'facility_list' %}" class="btn btn-secondary ml-2">Reset</a>
+</form>
+
+<a href="{% url 'facility_add' %}" class="btn btn-success mb-3">Add Facility</a>
+
 <table class="table table-bordered">
   <tr>
     <th>Name</th>
     <th>Location</th>
+    <th>Type</th>
+    <th>Partner Org</th>
     <th>Actions</th>
   </tr>
   {% for facility in object_list %}
   <tr>
     <td><a href="{% url 'facility_detail' facility.pk %}">{{ facility.name }}</a></td>
     <td>{{ facility.location }}</td>
+    <td>{{ facility.facility_type }}</td>
+    <td>{{ facility.partner_org }}</td>
     <td>
       <a href="{% url 'facility_edit' facility.pk %}" class="btn btn-sm btn-warning">Edit</a>
       <a href="{% url 'facility_delete' facility.pk %}" class="btn btn-sm btn-danger">Delete</a>
     </td>
   </tr>
   {% empty %}
-  <tr><td colspan="3">No facilities found.</td></tr>
+  <tr><td colspan="5">No facilities found.</td></tr>
   {% endfor %}
 </table>
 {% endblock %}
