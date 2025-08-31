@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Equipment</h2>
+
+<!-- Search and Filter Form -->
+<form method="get" class="form-inline mb-3">
+  <input type="text" name="search" placeholder="Search by capability..." value="{{ request.GET.search }}" class="form-control mr-2">
+  
+  <select name="domain" class="form-control mr-2">
+    <option value="All">All Domains</option>
+    <option value="Electronics" {% if request.GET.domain == "Electronics" %}selected{% endif %}>Electronics</option>
+    <option value="Mechanical" {% if request.GET.domain == "Mechanical" %}selected{% endif %}>Mechanical</option>
+    <option value="IoT" {% if request.GET.domain == "IoT" %}selected{% endif %}>IoT</option>
+    <option value="Other" {% if request.GET.domain == "Other" %}selected{% endif %}>Other</option>
+  </select>
+  
+  <button type="submit" class="btn btn-primary">Filter</button>
+  <a href="{% url 'equipment_list' %}" class="btn btn-secondary ml-2">Reset</a>
+</form>
+
+<a href="{% url 'equipment_add' %}" class="btn btn-success mb-3">Add Equipment</a>
+
+<table class="table table-bordered">
+  <tr>
+    <th>Name</th>
+    <th>Facility</th>
+    <th>Inventory Code</th>
+    <th>Usage Domain</th>
+    <th>Support Phase</th>
+    <th>Actions</th>
+  </tr>
+  {% for equipment in object_list %}
+  <tr>
+    <td><a href="{% url 'equipment_detail' equipment.pk %}">{{ equipment.name }}</a></td>
+    <td>{{ equipment.facility.name }}</td>
+    <td>{{ equipment.inventory_code }}</td>
+    <td>{{ equipment.usage_domain }}</td>
+    <td>{{ equipment.support_phase }}</td>
+    <td>
+      <a href="{% url 'equipment_edit' equipment.pk %}" class="btn btn-sm btn-warning">Edit</a>
+      <a href="{% url 'equipment_delete' equipment.pk %}" class="btn btn-sm btn-danger">Delete</a>
+    </td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="6">No equipment found.</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}
