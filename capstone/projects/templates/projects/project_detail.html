@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ object.title }}</h1>
+<p><strong>Program:</strong> {{ object.program }}</p>
+<p><strong>Facility:</strong> {{ object.facility }}</p>
+<p><strong>Nature:</strong> {{ object.get_nature_of_project_display }}</p>
+<p><strong>Stage:</strong> {{ object.get_prototype_stage_display }}</p>
+<p><strong>Innovation Focus:</strong> {{ object.innovation_focus }}</p>
+<p><strong>Description:</strong> {{ object.description }}</p>
+<p><strong>Testing Requirements:</strong> {{ object.testing_requirements }}</p>
+<p><strong>Commercialization Plan:</strong> {{ object.commercialization_plan }}</p>
+
+<p>
+  <a class="btn btn-secondary" href="{% url 'project_edit' object.pk %}">Edit</a>
+  <a class="btn btn-danger" href="{% url 'project_delete' object.pk %}">Delete</a>
+  <a class="btn btn-outline-primary" href="{% url 'project_outcomes' object.pk %}">View Outcomes</a>
+</p>
+{% endblock %}
