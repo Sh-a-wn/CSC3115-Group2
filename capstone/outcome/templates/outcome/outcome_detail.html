@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ object.title }}</h1>
+<p><strong>Project:</strong> <a href="{% url 'project_detail' object.project.pk %}">{{ object.project.title }}</a></p>
+<p><strong>Type:</strong> {{ object.get_outcome_type_display }}</p>
+<p><strong>Description:</strong> {{ object.description }}</p>
+<p><strong>Quality Certification:</strong> {{ object.quality_certification|default:"-" }}</p>
+<p><strong>Status:</strong> {{ object.get_commercialization_status_display|default:"-" }}</p>
+<p><strong>Artifact:</strong>
+  {% if object.artifact_link %}
+    <a href="{{ object.artifact_link }}" target="_blank" rel="noopener">Open Link</a>
+  {% else %}
+    -
+  {% endif %}
+</p>
+<p>
+  <a class="btn btn-secondary" href="{% url 'outcome_edit' object.pk %}">Edit</a>
+  <a class="btn btn-danger" href="{% url 'outcome_delete' object.pk %}">Delete</a>
+  <a class="btn btn-outline-primary" href="{% url 'project_outcomes' object.project.pk %}">Back to Outcomes</a>
+</p>
+{% endblock %}
