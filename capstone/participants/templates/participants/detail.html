@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Participant: {{ object.full_name }}</h2>
+
+<ul>
+    <li><strong>Email:</strong> {{ object.email }}</li>
+    <li><strong>Affiliation:</strong> {{ object.affiliation }}</li>
+    <li><strong>Specialization:</strong> {{ object.specialization }}</li>
+    <li><strong>Institution:</strong> {{ object.institution }}</li>
+    <li><strong>Cross-Skill Trained:</strong> {{ object.cross_skill_trained|yesno:"Yes,No" }}</li>
+</ul>
+
+<a href="{% url 'participant_edit' object.pk %}" class="btn btn-warning">Edit</a>
+<a href="{% url 'participant_delete' object.pk %}" class="btn btn-danger">Delete</a>
+<a href="{% url 'participant_list' %}" class="btn btn-secondary">Back to list</a>
+{% endblock %}
