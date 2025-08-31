@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Projects by Facility</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Program</th>
+      <th>Facility</th>
+      <th>Nature</th>
+      <th>Stage</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for project in object_list %}
+    <tr>
+      <td><a href="{% url 'project_detail' project.pk %}">{{ project.title }}</a></td>
+      <td>{{ project.program }}</td>
+      <td>{{ project.facility }}</td>
+      <td>{{ project.get_nature_of_project_display }}</td>
+      <td>{{ project.get_prototype_stage_display }}</td>
+    </tr>
+  {% empty %}
+    <tr><td colspan="5">No projects for this facility.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
