@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Project Participant Details</h2>
+
+<ul>
+    <li><strong>Participant:</strong> {{ object.participant.full_name }}</li>
+    <li><strong>Project:</strong> {{ object.project.name }}</li>
+    <li><strong>Role on Project:</strong> {{ object.role_on_project }}</li>
+    <li><strong>Skill Role:</strong> {{ object.skill_role }}</li>
+</ul>
+
+<a href="{% url 'projectparticipant_edit' object.pk %}" class="btn btn-warning">Edit</a>
+<a href="{% url 'projectparticipant_delete' object.pk %}" class="btn btn-danger">Delete</a>
+<a href="{% url 'projectparticipant_list' %}" class="btn btn-secondary">Back to list</a>
+{% endblock %}
