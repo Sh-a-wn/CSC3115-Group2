@@ -26,3 +26,4 @@ class ServiceDeleteView(DeleteView):
     model = Service
     template_name = "services/confirm_delete.html"
     success_url = reverse_lazy('service_list')
+
