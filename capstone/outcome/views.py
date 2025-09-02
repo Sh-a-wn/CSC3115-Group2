@@ -27,11 +27,12 @@ class OutcomeListForProjectView(ListView):
 
 class OutcomeDetailView(DetailView):
     model = Outcome
-
+    template_name = "outcome/outcome_detail.html"
 
 class OutcomeCreateView(CreateView):
     model = Outcome
     fields = "__all__"
+    template_name = "outcome/outcome_form.html"
 
     def get_initial(self):
         initial = super().get_initial()
@@ -47,6 +48,7 @@ class OutcomeCreateView(CreateView):
 class OutcomeUpdateView(UpdateView):
     model = Outcome
     fields = "__all__"
+    template_name = "outcome/outcome_form.html"
 
     def get_success_url(self):
         return reverse_lazy("project_outcomes", kwargs={"project_id": self.object.project_id})
@@ -54,6 +56,7 @@ class OutcomeUpdateView(UpdateView):
 
 class OutcomeDeleteView(DeleteView):
     model = Outcome
+    template_name = "outcome/outcome_confirm_delete.html"
 
     def get_success_url(self):
         return reverse_lazy("project_outcomes", kwargs={"project_id": self.object.project_id})
