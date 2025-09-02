@@ -8,8 +8,8 @@ from .views import (
 )
 
 urlpatterns = [
-    path("project/<int:project_id>/", OutcomeListForProjectView.as_view(), name="project_outcomes"),
-    path("project/<int:project_id>/add/", OutcomeCreateView.as_view(), name="outcome_add_for_project"),
+    path("project/<int:project_id>/outcomes/", OutcomeListForProjectView.as_view(), name="project_outcomes"),
+     path("project/<int:project_id>/outcomes/add/", OutcomeCreateView.as_view(), name="outcome_add"),
 
     path("<int:pk>/", OutcomeDetailView.as_view(), name="outcome_detail"),
     path("<int:pk>/edit/", OutcomeUpdateView.as_view(), name="outcome_edit"),
