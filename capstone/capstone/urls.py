@@ -17,9 +17,10 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-
+from capstone.views import dashboard
 urlpatterns = [
     path('admin/', admin.site.urls),
+     path("", dashboard, name="dashboard"),
     path('programs/', include('programs.urls')),
     path('facilities/', include('facilities.urls')),
     path('services/', include('services.urls')),
@@ -27,5 +28,4 @@ urlpatterns = [
     path('projects/', include('projects.urls')),
     path('participants/', include('participants.urls')),
     path('outcome/', include('outcome.urls')),
-    path('', include('programs.urls')),
 ]
