@@ -2,7 +2,42 @@
 {% block content %}
 <h2>Programs</h2>
 
-<a href="{% url 'program_add' %}" class="btn btn-primary mb-3">Add Program</a>
+<!-- Search and filter -->
+<form method="get" class="form-inline mb-3">
+  <!-- General search -->
+  <input type="text" name="search" placeholder="Search programs..." value="{{ request.GET.search }}" class="form-control mr-2"> 
+
+  <!-- Phase filter -->
+<select name="phase" class="form-control mr-2">
+  <option value="All">All Phases</option>
+  {% for phase in phases_list %}
+    {% if phase %}
+      <option value="{{ phase }}" {% if request.GET.phase == phase %}selected{% endif %}>
+        {{ phase }}
+      </option>
+    {% endif %}
+  {% endfor %}
+</select>
+
+<!-- National Alignment filter -->
+<select name="alignment" class="form-control mr-2">
+  <option value="All">All Alignments</option>
+  {% for alignment in alignments_list %}
+    {% if alignment %}
+      <option value="{{ alignment }}" {% if request.GET.alignment == alignment %}selected{% endif %}>
+        {{ alignment }}
+      </option>
+    {% endif %}
+  {% endfor %}
+</select>
+
+
+  <button type="submit" class="btn btn-primary">Filter</button>
+  <a href="{% url 'program_list' %}" class="btn btn-secondary ml-2">Reset</a>
+</form>
+
+
+<a href="{% url 'program_add' %}" class="btn btn-success mb-3">Add Program</a>
 <table class="table table-bordered">
   <tr>
     <th>Name</th>
