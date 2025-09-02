@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4 text-center">📊 Capstone Dashboard</h1>
+
+    <div class="row g-4">
+        <!-- Projects -->
+        <div class="col-md-4">
+            <div class="card text-bg-primary shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h2>{{ total_projects }}</h2>
+                    <p class="card-text">Total Projects</p>
+                    <a href="{% url 'project_list' %}" class="btn btn-light btn-sm">View Projects</a>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <!-- Participants -->
+        <div class="col-md-4">
+            <div class="card text-bg-success shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h2>{{ total_participants }}</h2>
+                    <p class="card-text">Active Participants</p>
+                    <a href="{% url 'participant_list' %}" class="btn btn-light btn-sm">View Participants</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Facilities -->
+        <div class="col-md-4">
+            <div class="card text-bg-info shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h2>{{ total_facilities }}</h2>
+                    <p class="card-text">Facilities</p>
+                    <a href="{% url 'facility_list' %}" class="btn btn-light btn-sm">View Facilities</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Equipment -->
+        <div class="col-md-4">
+            <div class="card text-bg-warning shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h2>{{ total_equipment }}</h2>
+                    <p class="card-text">Equipment</p>
+                    <a href="{% url 'equipment_list' %}" class="btn btn-light btn-sm">View Equipment</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services -->
+        <div class="col-md-4">
+            <div class="card text-bg-danger shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h2>{{ total_services }}</h2>
+                    <p class="card-text">Services</p>
+                    <a href="{% url 'service_list' %}" class="btn btn-light btn-sm">View Services</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Programs -->
+        <div class="col-md-4">
+            <div class="card text-bg-dark shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h2>{{ total_programs }}</h2>
+                    <p class="card-text">Total Programs</p>
+                    <a href="{% url 'program_list' %}" class="btn btn-light btn-sm">View Programs</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+{% endblock %}
