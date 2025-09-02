@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>{{ view.object|default_if_none:"Add" }} Participant</h2>
+<h2>{% if object %}Edit{% else %}Add{% endif %} Participant</h2>
 
 <form method="post">
     {% csrf_token %}
