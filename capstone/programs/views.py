@@ -10,8 +10,9 @@ class ProgramDetailView(DetailView):
 
 class ProgramCreateView(CreateView):
     model = Program
-    fields = '_all_'
-    success_url = reverse_lazy('program_list')
+    fields = ['name', 'description', 'national_alignment', 'focus_areas', 'phases']
+    template_name = 'programs/add_program.html'
+    success_url = '/programs/' 
 
 class ProgramUpdateView(UpdateView):
     model = Program

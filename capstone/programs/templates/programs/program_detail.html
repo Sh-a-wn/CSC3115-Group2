@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ program.name }}</h1>
+  <ul>
+    <li><strong>Description:</strong> {{ program.description }}</li>
+    <li><strong>National Alignment:</strong> {{ program.national_alignment }}</li>
+    <li><strong>Focus Areas:</strong> {{ program.focus_areas }}</li>
+    <li><strong>Phases:</strong> {{ program.phases }}</li>
+  </ul>
+
+  <a href="{% url 'program_edit' program.id %}">Edit</a> |
+  <a href="{% url 'program_delete' program.id %}">Delete</a> |
+  <a href="{% url 'program_list' %}">Back to Program List</a>
+{% endblock %}

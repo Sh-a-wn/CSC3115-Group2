@@ -1,20 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>Programs</h2>
-<a href="{% url 'service_add' %}" class="btn btn-primary mb-3">Add Program</a>
+
+<a href="{% url 'program_add' %}" class="btn btn-primary mb-3">Add Program</a>
 <table class="table table-bordered">
   <tr>
     <th>Name</th>
-    <th>Facility</th>
+    <th>National Alignment</th>
+    <th>Focus Areas</th>
+    <th>Phases</th>
     <th>Actions</th>
   </tr>
-  {% for service in object_list %}
+  {% for program in object_list %}
   <tr>
-    <td><a href="{% url 'service_detail' service.pk %}">{{ service.name }}</a></td>
-    <td>{{ service.facility.name }}</td>
+    <td><a href="{% url 'program_detail' program.pk %}">{{ program.name }}</a></td>
+    <td>{{ program.national_alignment }}</td>
+    <td>{{ program.focus_areas }}</td>
+    <td>{{ program.phases }}</td>
     <td>
-      <a href="{% url 'service_edit' service.pk %}" class="btn btn-sm btn-warning">Edit</a>
-      <a href="{% url 'service_delete' service.pk %}" class="btn btn-sm btn-danger">Delete</a>
+      <a href="{% url 'program_edit' program.pk %}" class="btn btn-sm btn-warning">Edit</a>
+      <a href="{% url 'program_delete' program.pk %}" class="btn btn-sm btn-danger">Delete</a>
     </td>
   </tr>
   {% empty %}
