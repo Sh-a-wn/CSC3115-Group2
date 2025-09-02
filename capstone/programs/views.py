@@ -16,7 +16,7 @@ class ProgramCreateView(CreateView):
 
 class ProgramUpdateView(UpdateView):
     model = Program
-    fields = '_all_'
+    fields = '__all__'
     success_url = reverse_lazy('program_list')
 
 class ProgramDeleteView(DeleteView):
