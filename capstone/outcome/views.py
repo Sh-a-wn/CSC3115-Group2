@@ -41,6 +41,17 @@ class OutcomeCreateView(CreateView):
             initial["project"] = get_object_or_404(Project, pk=project_id)
         return initial
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if "project_id" in self.kwargs:
+            context["project"] = get_object_or_404(Project, pk=self.kwargs["project_id"])
+        return context
+
+    def form_valid(self, form):
+        if "project_id" in self.kwargs:
+            form.instance.project = get_object_or_404(Project, pk=self.kwargs["project_id"])
+        return super().form_valid(form)
+
     def get_success_url(self):
         return reverse_lazy("project_outcomes", kwargs={"project_id": self.object.project_id})
 
@@ -49,10 +60,23 @@ class OutcomeUpdateView(UpdateView):
     model = Outcome
     fields = "__all__"
     template_name = "outcome/outcome_form.html"
-
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if "project_id" in self.kwargs:
+            context["project"] = get_object_or_404(Project, pk=self.kwargs["project_id"])
+        else:
+            # If no project_id in kwargs, get it from the outcome object
+            context["project"] = self.object.project
+        return context
+    
+    def form_valid(self, form):
+        if "project_id" in self.kwargs:
+            form.instance.project = get_object_or_404(Project, pk=self.kwargs["project_id"])
+        return super().form_valid(form)
+    
     def get_success_url(self):
         return reverse_lazy("project_outcomes", kwargs={"project_id": self.object.project_id})
-
 
 class OutcomeDeleteView(DeleteView):
     model = Outcome
