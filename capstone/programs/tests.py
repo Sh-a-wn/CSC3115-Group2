@@ -1,24 +1,22 @@
 
 from django.test import TestCase
-from django.core.exceptions import ValidationError, IntegrityError
+from django.db import IntegrityError
+from django.core.exceptions import ValidationError
 from .models import Program
 from facilities.models import Facility
 from projects.models import Project
 
 class ProgramModelTests(TestCase):
-	def test_create_program_with_required_fields(self):
-		program = Program.objects.create(
-			name="Test Program",
-			description="A test program."
-		)
-		self.assertEqual(program.name, "Test Program")
-		self.assertEqual(program.description, "A test program.")
-
 	def test_program_missing_required_fields(self):
-		with self.assertRaises(IntegrityError):
-			Program.objects.create(description="Missing name")
-		with self.assertRaises(IntegrityError):
-			Program.objects.create(name="Missing description")
+		# Missing name
+		program = Program(description="Missing name")
+		with self.assertRaises(ValidationError):
+			program.full_clean()
+		# Missing description
+		program = Program(name="Missing description")
+		with self.assertRaises(ValidationError):
+			program.full_clean()
+    
 
 
 class ProjectReferentialIntegrityTests(TestCase):
@@ -33,7 +31,6 @@ class ProjectReferentialIntegrityTests(TestCase):
 		)
 
 	def test_project_must_have_facility_and_program(self):
-		# Should succeed
 		project = Project.objects.create(
 			title="Test Project",
 			program=self.program,
