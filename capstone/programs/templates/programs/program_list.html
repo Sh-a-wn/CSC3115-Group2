@@ -2,38 +2,34 @@
 {% block content %}
 <h2>Programs</h2>
 
-<!-- Search and filter -->
-<form method="get" class="form-inline mb-3">
-  <!-- General search -->
-  <input type="text" name="search" placeholder="Search programs..." value="{{ request.GET.search }}" class="form-control mr-2"> 
 
-  <!-- Phase filter -->
-<select name="phase" class="form-control mr-2">
-  <option value="All">All Phases</option>
-  {% for phase in phases_list %}
-    {% if phase %}
-      <option value="{{ phase }}" {% if request.GET.phase == phase %}selected{% endif %}>
-        {{ phase }}
-      </option>
-    {% endif %}
-  {% endfor %}
-</select>
-
-<!-- National Alignment filter -->
-<select name="alignment" class="form-control mr-2">
-  <option value="All">All Alignments</option>
-  {% for alignment in alignments_list %}
-    {% if alignment %}
-      <option value="{{ alignment }}" {% if request.GET.alignment == alignment %}selected{% endif %}>
-        {{ alignment }}
-      </option>
-    {% endif %}
-  {% endfor %}
-</select>
-
-
-  <button type="submit" class="btn btn-primary">Filter</button>
-  <a href="{% url 'program_list' %}" class="btn btn-secondary ml-2">Reset</a>
+<!-- Sexy, compact search and filter -->
+<form method="get" class="form-inline mb-3" style="gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+  <div class="input-group input-group-sm" style="max-width: 180px;">
+    <input type="text" name="search" placeholder="Search programs..." value="{{ request.GET.search }}" class="form-control" aria-label="Search programs">
+  </div>
+  <div class="input-group input-group-sm" style="max-width: 140px;">
+    <select name="phase" class="form-control">
+      <option value="All">All Phases</option>
+      {% for phase in phases_list %}
+        {% if phase %}
+          <option value="{{ phase }}" {% if request.GET.phase == phase %}selected{% endif %}>{{ phase }}</option>
+        {% endif %}
+      {% endfor %}
+    </select>
+  </div>
+  <div class="input-group input-group-sm" style="max-width: 140px;">
+    <select name="alignment" class="form-control">
+      <option value="All">All Alignments</option>
+      {% for alignment in alignments_list %}
+        {% if alignment %}
+          <option value="{{ alignment }}" {% if request.GET.alignment == alignment %}selected{% endif %}>{{ alignment }}</option>
+        {% endif %}
+      {% endfor %}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary btn-sm">Filter</button>
+  <a href="{% url 'program_list' %}" class="btn btn-secondary btn-sm">Reset</a>
 </form>
 
 
