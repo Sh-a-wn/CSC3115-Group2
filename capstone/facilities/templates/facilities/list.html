@@ -24,19 +24,16 @@
     <th>Name</th>
     <th>Location</th>
     <th>Type</th>
-    <th>Partner Org</th>
-    <th>Actions</th>
+    <th>Partner Organization</th>
+    
   </tr>
   {% for facility in object_list %}
   <tr>
     <td><a href="{% url 'facility_detail' facility.pk %}">{{ facility.name }}</a></td>
     <td>{{ facility.location }}</td>
     <td>{{ facility.facility_type }}</td>
-    <td>{{ facility.partner_org }}</td>
-    <td>
-      <a href="{% url 'facility_edit' facility.pk %}" class="btn btn-sm btn-warning">Edit</a>
-      <a href="{% url 'facility_delete' facility.pk %}" class="btn btn-sm btn-danger">Delete</a>
-    </td>
+    <td>{{ facility.partner_organization }}</td>
+    
   </tr>
   {% empty %}
   <tr><td colspan="5">No facilities found.</td></tr>
