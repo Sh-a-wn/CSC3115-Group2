@@ -27,7 +27,7 @@
     <th>Inventory Code</th>
     <th>Usage Domain</th>
     <th>Support Phase</th>
-    <th>Actions</th>
+    
   </tr>
   {% for equipment in object_list %}
   <tr>
@@ -36,10 +36,7 @@
     <td>{{ equipment.inventory_code }}</td>
     <td>{{ equipment.usage_domain }}</td>
     <td>{{ equipment.support_phase }}</td>
-    <td>
-      <a href="{% url 'equipment_edit' equipment.pk %}" class="btn btn-sm btn-warning">Edit</a>
-      <a href="{% url 'equipment_delete' equipment.pk %}" class="btn btn-sm btn-danger">Delete</a>
-    </td>
+    
   </tr>
   {% empty %}
   <tr><td colspan="6">No equipment found.</td></tr>

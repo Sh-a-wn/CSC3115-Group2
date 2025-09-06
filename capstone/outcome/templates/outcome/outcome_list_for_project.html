@@ -2,7 +2,7 @@
 {% block content %}
 <h1>Outcomes for: {{ project.title }}</h1>
 <p>
-  <a class="btn btn-primary" href="{% url 'outcome_add_for_project' project.pk %}">Add Outcome</a>
+  <a class="btn btn-primary" href="{% url 'outcome_add' project.pk %}">Add Outcome</a>
   <a class="btn btn-secondary" href="{% url 'project_detail' project.pk %}">Back to Project</a>
 </p>
 <table class="table table-striped">

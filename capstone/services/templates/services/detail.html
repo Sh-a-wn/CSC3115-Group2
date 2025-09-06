@@ -5,5 +5,10 @@
 <p><strong>Description:</strong> {{ object.description }}</p>
 <p><strong>Category:</strong> {{ object.category }}</p>
 <p><strong>Skill Type:</strong> {{ object.skill_type }}</p>
-<a href="{% url 'service_list' %}" class="btn btn-secondary">Back</a>
+<p>
+
+      <a href="{% url 'service_edit' service.pk %}" class="btn btn-warning">Edit</a>
+      <a href="{% url 'service_delete' service.pk %}" class="btn btn-danger">Delete</a>
+        <a href="{% url 'service_list' %}" class="btn btn-secondary">Back</a>
+</p>
 {% endblock %}

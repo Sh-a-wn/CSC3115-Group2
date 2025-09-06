@@ -16,7 +16,7 @@
             <th>Role</th>
             <th>Skill Role</th>
             <th>Cross-Skill</th>
-            <th>Actions</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -27,14 +27,11 @@
             <td>{{ participant.affiliation }}</td>
             <td>{{ participant.specialization }}</td>
             <td>{{ participant.institution }}</td>
-            <td>{{ participant.project.name }}</td>
+            <td>{{ participant.project.title }}</td>
             <td>{{ participant.role_on_project }}</td>
             <td>{{ participant.skill_role }}</td>
             <td>{{ participant.cross_skill_trained|yesno:"Yes,No" }}</td>
-            <td>
-                <a href="{% url 'participant_edit' participant.pk %}" class="btn btn-warning btn-sm">Edit</a>
-                <a href="{% url 'participant_delete' participant.pk %}" class="btn btn-danger btn-sm">Delete</a>
-            </td>
+           
         </tr>
         {% empty %}
         <tr>
