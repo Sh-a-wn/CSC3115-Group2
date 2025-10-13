@@ -9,7 +9,7 @@
     <li><strong>Phases:</strong> {{ program.phases }}</li>
   </ul>
 
-  <a class="btn btn-secondary" href="{% url 'program_edit' program.id %}">Edit</a> |
-  <a class="btn btn-danger"  href="{% url 'program_delete' program.id %}">Delete</a> |
-  <a class="btn btn-outline-primary"  href="{% url 'program_list' %}">Back to Program List</a>
+  <a href="{% url 'program_edit' program.id %}" class="btn btn-warning">Edit</a> |
+  <a href="{% url 'program_delete' program.id %}" class="btn btn-danger">Delete</a> |
+  <a href="{% url 'program_list' %}" class="btn btn-secondary">Back to Program List</a>
 {% endblock %}
