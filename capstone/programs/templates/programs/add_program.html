@@ -391,15 +391,25 @@
     }
   }
 
-  /* Dark mode adjustments */
-  @media (prefers-color-scheme: light) {
-    .form-fields input,
-    .form-fields textarea,
-    .form-fields select {
-      background: rgba(0, 0, 0, 0.05);
-      color: #333;
-    }
+/* Dark mode dropdown options */
+@media (prefers-color-scheme: dark) {
+  .form-fields select option {
+    background: #2a2a2a;
+    color: #fff;
   }
+}
+
+/* Force visibility for all browsers */
+.form-fields select {
+  -webkit-appearance: menulist;
+  -moz-appearance: menulist;
+  appearance: menulist;
+}
+
+.form-fields select option {
+  font-size: 1rem;
+  font-weight: normal;
+}
 </style>
 
 <script>

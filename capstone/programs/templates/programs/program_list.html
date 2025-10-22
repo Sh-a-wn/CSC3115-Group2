@@ -2,40 +2,111 @@
 {% block content %}
 <h2>Programs</h2>
 
-<!-- Search and filter -->
-<form method="get" class="form-inline mb-3">
-  <!-- General search -->
-  <input type="text" name="search" placeholder="Search programs..." value="{{ request.GET.search }}" class="form-control mr-2"> 
+<!-- Subtle search and filter with dropdown arrows -->
+<form method="get" class="mb-3" style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;">
+  <!-- Search input -->
+  <div style="position: relative;">
+    <input type="text" 
+           name="search" 
+           placeholder="Search programs..." 
+           value="{{ request.GET.search }}" 
+           style="border: none; 
+                  background: transparent; 
+                  outline: none; 
+                  padding: 4px 20px 4px 0; 
+                  border-bottom: 1px solid transparent;
+                  transition: border-bottom 0.2s ease;
+                  font-size: 14px;"
+           onblur="this.style.borderBottom = '1px solid transparent'"
+           onfocus="this.style.borderBottom = '1px solid #007bff'"
+           aria-label="Search programs">
+    <span style="position: absolute; 
+                 right: 0; 
+                 top: 50%; 
+                 transform: translateY(-50%); 
+                 color: #eaeff4; 
+                 font-size: 12px;">🔍</span>
+  </div>
 
-  <!-- Phase filter -->
-<select name="phase" class="form-control mr-2">
-  <option value="All">All Phases</option>
-  {% for phase in phases_list %}
-    {% if phase %}
-      <option value="{{ phase }}" {% if request.GET.phase == phase %}selected{% endif %}>
-        {{ phase }}
-      </option>
-    {% endif %}
-  {% endfor %}
-</select>
+  <!-- Phase dropdown -->
+  <div style="position: relative; cursor: pointer;">
+    <select name="phase" 
+            style="appearance: none; 
+                   -webkit-appearance: none; 
+                   -moz-appearance: none;
+                   border: none; 
+                   background: transparent; 
+                   outline: none; 
+                   padding: 4px 20px 4px 0;
+                   cursor: pointer;
+                   font-size: 14px;
+                   color: #e5eaef;">
+      <option value="All">All Phases</option>
+      {% for phase in phases_list %}
+        {% if phase %}
+          <option value="{{ phase }}" {% if request.GET.phase == phase %}selected{% endif %}>{{ phase }}</option>
+        {% endif %}
+      {% endfor %}
+    </select>
+    <span style="position: absolute; 
+                 right: 0; 
+                 top: 50%; 
+                 transform: translateY(-50%); 
+                 pointer-events: none; 
+                 color: #dde2e6; 
+                 font-size: 10px;">▼</span>
+  </div>
 
-<!-- National Alignment filter -->
-<select name="alignment" class="form-control mr-2">
-  <option value="All">All Alignments</option>
-  {% for alignment in alignments_list %}
-    {% if alignment %}
-      <option value="{{ alignment }}" {% if request.GET.alignment == alignment %}selected{% endif %}>
-        {{ alignment }}
-      </option>
-    {% endif %}
-  {% endfor %}
-</select>
+  <!-- Alignment dropdown -->
+  <div style="position: relative; cursor: pointer;">
+    <select name="alignment" 
+            style="appearance: none; 
+                   -webkit-appearance: none; 
+                   -moz-appearance: none;
+                   border: none; 
+                   background: transparent; 
+                   outline: none; 
+                   padding: 4px 20px 4px 0;
+                   cursor: pointer;
+                   font-size: 14px;
+                   color: #e4e4ef;">
+      <option value="All">All Alignments</option>
+      {% for alignment in alignments_list %}
+        {% if alignment %}
+          <option value="{{ alignment }}" {% if request.GET.alignment == alignment %}selected{% endif %}>{{ alignment }}</option>
+        {% endif %}
+      {% endfor %}
+    </select>
+    <span style="position: absolute; 
+                 right: 0; 
+                 top: 50%; 
+                 transform: translateY(-50%); 
+                 pointer-events: none; 
+                 color: #6c757d; 
+                 font-size: 10px;">▼</span>
+  </div>
 
-
-  <button type="submit" class="btn btn-primary">Filter</button>
-  <a href="{% url 'program_list' %}" class="btn btn-secondary ml-2">Reset</a>
+  <!-- Action buttons -->
+  <div style="display: flex; gap: 0.5rem;">
+    <button type="submit" 
+            style="background: none; 
+                   border: none; 
+                   color: #007bff; 
+                   cursor: pointer; 
+                   font-size: 14px; 
+                   text-decoration: underline;
+                   padding: 4px 0;">Filter</button>
+    <a href="{% url 'program_list' %}" 
+       style="background: none; 
+              border: none; 
+              color: #eff2f4; 
+              text-decoration: none; 
+              font-size: 14px; 
+              padding: 4px 0;"
+       onmouseover="this.style.textDecoration='underline'"
+       onmouseout="this.style.textDecoration='none'">Reset</a>
+  </div>
 </form>
-
 
 <a href="{% url 'program_add' %}" class="btn btn-success mb-3">Add Program</a>
 <table class="table table-bordered">
@@ -44,7 +115,6 @@
     <th>National Alignment</th>
     <th>Focus Areas</th>
     <th>Phases</th>
-    
   </tr>
   {% for program in object_list %}
   <tr>
@@ -52,10 +122,9 @@
     <td>{{ program.national_alignment }}</td>
     <td>{{ program.focus_areas }}</td>
     <td>{{ program.phases }}</td>
-    
   </tr>
   {% empty %}
-  <tr><td colspan="3">No programs found.</td></tr>
+  <tr><td colspan="4">No programs found.</td></tr>
   {% endfor %}
 </table>
 {% endblock %}
