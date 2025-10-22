@@ -39,10 +39,10 @@ class Program(models.Model):
             })
 
         # Validate alignment token if provided
-        if self.national_alignment and self.national_alignment not in self.VALID_ALIGNMENT_TOKENS:
-            raise ValidationError({
-                'national_alignment': _('Invalid alignment token')
-            })
+        valid_tokens = [x[0] for x in self.VALID_ALIGNMENT_TOKENS]
+        if self.national_alignment and self.national_alignment not in valid_tokens:
+            raise ValidationError({'national_alignment': _('Invalid alignment token')})
+
 
         super().clean()
 
