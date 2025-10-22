@@ -7,7 +7,7 @@ from projects.models import Project
 
 
 class ProjectBusinessRulesTest(SimpleTestCase):
-    """Tests for project business rules using mocks.
+    """Tests for project business rules using mocks
 
     We create Project instances (not saved) and set the attributes and related
     managers (participants, outcomes) to Mock objects that control the
