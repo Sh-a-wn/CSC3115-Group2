@@ -7,12 +7,12 @@ from projects.models import Project
 
 
 class ProjectBusinessRulesTest(SimpleTestCase):
-    """Tests for project business rules using mocks (no DB).
+    """Tests for project business rules using mocks.
 
     We create Project instances (not saved) and set the attributes and related
     managers (participants, outcomes) to Mock objects that control the
     behavior of .exists(). This avoids using the test database.
-    """
+    """ 
 
     def make_project(self, **overrides):
         # Return a plain object that has the attributes the Project.clean expects.
